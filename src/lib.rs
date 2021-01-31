@@ -46,10 +46,10 @@ impl Universe {
     }
 }
 
+// Universe functions exposed to js
 #[wasm_bindgen]
 impl Universe {
-    
-
+    // constructor
     pub fn new() -> Universe {
         let width = 64;
         let height = 64;
@@ -71,10 +71,24 @@ impl Universe {
         }
     }
 
+    // getters
+    pub fn width(&self) -> u32 {
+        self.width
+    }
+
+    pub fn height(&self) -> u32 {
+        self.height
+    }
+
+    pub fn cells(&self) -> *const Cell {
+        self.cells.as_ptr()
+    }
+
+    // render
     pub fn render(&self) -> String {
         self.to_string()
     }
-
+    // update
     pub fn tick(&mut self) {
         let mut next = self.cells.clone();
 
